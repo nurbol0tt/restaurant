@@ -5,13 +5,13 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
-from apps.restaurant.models import Restaurant
+from apps.restaurant.models import Restaurant, Review
 from apps.restaurant.serializers import (
     RestaurantListSerializer,
     RestaurantDetailSerializer,
     RestaurantCreateSerializer,
     ReviewSerializer,
-    RestaurantReviewsDetailSerializer,
+    ReviewListSerializer,
 )
 
 
@@ -31,7 +31,7 @@ class RestaurantViewSet(ViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None) -> Response:
-        restaurant = get_object_or_404(Restaurant, id=pk)
+        restaurant = get_object_or_404(Restaurant.objects.prefetch_related('reviews'), id=pk)
         serializer = RestaurantDetailSerializer(restaurant)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -48,7 +48,7 @@ class ReviewsViewSet(ViewSet):
         serializer.save(restaurant=restaurant)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def retrieve(self, request, pk=None) -> Response:
-        restaurant = get_object_or_404(Restaurant, id=pk)
-        serializer = RestaurantReviewsDetailSerializer(restaurant)
+    def retrieve(self, request, restaurant__id=None) -> Response:
+        review = Review.objects.filter(restaurant__id=restaurant__id).all()
+        serializer = ReviewListSerializer(review, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

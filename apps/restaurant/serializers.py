@@ -31,6 +31,7 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
 class RestaurantDetailSerializer(serializers.ModelSerializer):
     maps_url = serializers.SerializerMethodField()
+    reviews = ReviewListSerializer(many=True)
 
     def get_maps_url(self, obj):
         gmaps = googlemaps.Client(settings.GOOGLE_MAPS_KEY)
