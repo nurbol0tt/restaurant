@@ -17,3 +17,28 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review for {self.restaurant.name}"
+
+
+class Comment(models.Model):
+    text = models.TextField(
+        "Messages",
+        max_length=5000
+    )
+    parent = models.ForeignKey(
+        'self',
+        verbose_name="Parent",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        related_name="children"
+    )
+    restaurant = models.ForeignKey(
+        Restaurant,
+        verbose_name="product",
+        on_delete=models.CASCADE,
+        null=True,
+        related_name="reviews",
+    )
+
+    def __str__(self):
+        return f"{self.username} - {self.product}"

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'drf_yasg',
 
     'apps.restaurant',
 ]
@@ -120,7 +121,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+MEDIA_URL_DIR = os.path.dirname(BASE_DIR)
+
+MEDIA_URL = "/media/"
+MEDIA_DIR = os.path.join(MEDIA_URL_DIR, "media")
+MEDIA_ROOT = MEDIA_DIR
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(MEDIA_URL_DIR, "staticfiles"),
+]
+STATIC_ROOT = MEDIA_URL_DIR
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
