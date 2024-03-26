@@ -9,7 +9,9 @@ from apps.restaurant.models import Restaurant
 from apps.restaurant.serializers import (
     RestaurantListSerializer,
     RestaurantDetailSerializer,
-    RestaurantCreateSerializer, ReviewSerializer,
+    RestaurantCreateSerializer,
+    ReviewSerializer,
+    RestaurantReviewsDetailSerializer,
 )
 
 
@@ -46,5 +48,7 @@ class ReviewsViewSet(ViewSet):
         serializer.save(restaurant=restaurant)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def lists(self, request) -> Response:
-        ...
+    def retrieve(self, request, pk=None) -> Response:
+        restaurant = get_object_or_404(Restaurant, id=pk)
+        serializer = RestaurantReviewsDetailSerializer(restaurant)
+        return Response(serializer.data, status=status.HTTP_200_OK)
