@@ -5,7 +5,6 @@
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 
 
@@ -93,44 +92,6 @@ ___
    
 7. Access the application at http://localhost:8000.
 
-
-# Usage
-
-The Usage section provides guidance on how to use and interact with the project. It covers various aspects and features to help you make the most of the project's capabilities.
-
-## Authentication
-
-- [User Registration](user-registration.md): Learn how to register new users.
-- [User Login](user-login.md): Understand the process of logging in to the application.
-- [Password Reset](password-reset.md): Find out how to reset your password if you forget it.
-
-## Views
-
-- [Dashboard](dashboard.md): Explore the dashboard view and its functionalities.
-- [Data Analysis](data-analysis.md): Learn how to perform data analysis using the project's built-in tools.
-- [Report Generation](report-generation.md): Understand how to generate reports based on the collected data.
-
-## API Reference
-
-- [Endpoints](api-endpoints.md): View the available API endpoints and their functionalities.
-- [Authentication](api-authentication.md): Learn how to authenticate API requests.
-
-For more detailed instructions and examples, click on the links provided in each subsection above.
-
-
-## Contributing
-
-Contributions are welcome! If you find any issues or have suggestions for improvement, please feel free to contribute.
-
-To contribute to the project, follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make the necessary changes and commit them.
-4. Push your changes to your forked repository.
-5. Submit a pull request to the main repository.
-
-For more details, please refer to the [contribution guidelines](CONTRIBUTING.md).
 
 
 ## License
