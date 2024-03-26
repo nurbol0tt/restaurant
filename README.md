@@ -36,17 +36,17 @@ You can choose either of the following methods to install and set up the project
 
 2. Clone the repository:
     ```
-    git clone https://gitlab.com/nurbol0tt/django-clean-architecture.git
+    git clone https://github.com/nurbol0tt/restaurant.git
     ```
    2.1 Build the Docker image and start the container:
    ```
-    cd my-project
+    cd RestaurantPlatForm
    ```
    ```
     docker-compose up --build
    ```
 
-3. Access the application at http://localhost:8000.
+3. Access the application at http://0.0.0.0:8000/.
 ___
 
 
@@ -54,12 +54,12 @@ ___
 
 1. Clone the repository:
     ```
-    git clone https://gitlab.com/nurbol0tt/django-clean-architecture.git
+    git clone https://github.com/nurbol0tt/restaurant.git
     ```
 
 2. Create a virtual environment:
     ```
-    cd my-project
+    cd RestaurantPlatForm
     python -m venv env
     ```
 
