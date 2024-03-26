@@ -9,7 +9,7 @@ from apps.restaurant.models import Restaurant
 from apps.restaurant.serializers import (
     RestaurantListSerializer,
     RestaurantDetailSerializer,
-    RestaurantCreateSerializer,
+    RestaurantCreateSerializer, ReviewSerializer,
 )
 
 
@@ -29,18 +29,21 @@ class RestaurantViewSet(ViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None) -> Response:
-        diary = get_object_or_404(Restaurant, id=pk)
-        serializer = RestaurantDetailSerializer(diary)
+        restaurant = get_object_or_404(Restaurant, id=pk)
+        serializer = RestaurantDetailSerializer(restaurant)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class CommentViewSet(ViewSet):
+class ReviewsViewSet(ViewSet):
 
-    @swagger_auto_schema(request_body=RestaurantCreateSerializer)
-    def create(self, request) -> Response:
-        serializer = RestaurantCreateSerializer(data=request.data)
+    @action(detail=True, methods=['post'])
+    @swagger_auto_schema(request_body=ReviewSerializer)
+    def reviews(self, request, pk=None) -> Response:
+        restaurant = get_object_or_404(Restaurant, id=pk)
+
+        serializer = ReviewSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        serializer.save(restaurant=restaurant)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def lists(self, request) -> Response:

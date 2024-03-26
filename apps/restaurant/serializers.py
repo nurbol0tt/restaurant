@@ -17,19 +17,28 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('restaurant', 'rating', 'comment')
+        fields = ('rating', 'comment')
+
+
+class ReviewListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Review
+        fields = ('id', 'rating', 'comment')
 
 
 class RestaurantDetailSerializer(serializers.ModelSerializer):
+    reviews = ReviewListSerializer(many=True, read_only=True)
 
     class Meta:
         model = Restaurant
         fields = (
-            'id', 'name', 'address', 'description',
+            'id', 'name', 'address', 'description', 'reviews'
         )
 
 
 class RestaurantCreateSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Restaurant
         fields = (
