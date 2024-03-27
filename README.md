@@ -1,7 +1,5 @@
 # Django Template
 
-![Project Logo](../src/static/django-logo-negative.png)
-
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
