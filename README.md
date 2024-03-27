@@ -88,10 +88,10 @@ ___
    python manage.py runserver
    ```
    
-7. Access the application at http://localhost:8000.
+7. Access the application at http://0.0.0.0:8000.
 
 
-
+8. URL Address http://0.0.0.0:8000/api/swagger
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
